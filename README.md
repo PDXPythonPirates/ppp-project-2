@@ -14,7 +14,6 @@ Repository for the second Portland Python Pyrates project
 
 * Install [brew](https://brew.sh/)
 
-
 * Install pyenv
    ```bash
    brew install pyenv
@@ -27,13 +26,12 @@ Repository for the second Portland Python Pyrates project
    brew install zsh
    ```
 
-
 * Install Python 3.8.10
    ```bash
    pyenv install 3.8.10
    ```
 
-* Install our base tooling
+* Install our base tooling and spin up virtual env
    ```bash
    make install
    ```
