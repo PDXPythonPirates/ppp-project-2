@@ -1,7 +1,16 @@
 # ppp-project-2
 Repository for the second Portland Python Pyrates project
 
+## Enable Virtual Environment and Install Packages
 
+### Mac
+
+* Note: make sure poetry is installed and first time setup is complete
+* Take a look at the Makefile to see what shell commands are being executed
+   ```bash
+   make install
+   ```
+   
 ## Adding Python Dependencies
 
 0. we use [poetry](https://python-poetry.org/) to track python deps
@@ -11,29 +20,20 @@ Repository for the second Portland Python Pyrates project
 ## First-Time Setup
 
 ### Mac
-
 * Install [brew](https://brew.sh/)
-
 * Install pyenv
    ```bash
    brew install pyenv
    echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
    echo 'eval "$(pyenv init -)"' >> ~/.zshrc
    ```
-
 * Install [zsh](https://sourabhbajaj.com/mac-setup/iTerm/zsh.html)
    ```bash
    brew install zsh
    ```
-
 * Install Python 3.8.10
    ```bash
    pyenv install 3.8.10
-   ```
-
-* Install our base tooling and spin up virtual env
-   ```bash
-   make install
    ```
 
 ### Troubleshooting
@@ -45,3 +45,9 @@ Help with various installation/setup issues:
 #### Mac
 
 ##### Edit to add
+
+## References
+1. [Flask Mega Tutorial - by Miguel Grinberg - 2018](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world) 
+
+## Other References
+1. Testing Markdown - [dillinger.io](https://dillinger.io/) 
