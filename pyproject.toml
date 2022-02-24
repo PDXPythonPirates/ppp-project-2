@@ -8,6 +8,8 @@ authors = ["Your Name <you@example.com>"]
 python = "^3.8.10"
 black = "^22.1.0"
 flake8 = "^4.0.1"
+Flask = "^2.0.3"
+python-dotenv = "^0.19.2"
 
 [tool.poetry.dev-dependencies]
 
