@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    {% if title %}
+    <title>{{ title }} - Crypto News</title>
+    {% else %}
+    <title>Welcome to Crypto News</title>
+    {% endif %}
+</head>
+
+<body>
+    <div>Cryptoblog: <a href="{{url_for('index')}}">Home</a></div>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+
+</html>
