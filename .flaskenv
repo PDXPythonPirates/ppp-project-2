@@ -1,1 +1,2 @@
 FLASK_APP=crypto_app.py
+FLASK_ENV=developement
