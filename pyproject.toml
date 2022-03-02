@@ -4,18 +4,18 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 
-[tool.poetry.dependencies]
+[tool.poetry.dependencies]  # Default dependency group
 python = "==3.8.10"
-black = "==22.1.0"
-flake8 = "==4.0.1"
 Flask = "==2.0.3"
-python-dotenv = "==0.19.2"
-Flask-WTF = "==1.0.0"
 numpy = "==1.22.2"
 pandas = "==1.4.1"
 dash = "==2.2.0"
+python-dotenv = "==0.19.2"
+Flask-WTF = "==1.0.0"
 
 [tool.poetry.dev-dependencies]
+black = "==22.1.0"
+flake8 = "==4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
