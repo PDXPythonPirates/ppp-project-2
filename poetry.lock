@@ -316,7 +316,7 @@ email = ["email-validator"]
 [metadata]
 lock-version = "1.1"
 python-versions = "==3.8.10"
-content-hash = "85b26e00cabe55ad38e8a15d3a5fba102f88f38202d252e97ff9654f70452e81"
+content-hash = "a8211d1ee47288f47060f876a076b2f9a08e4708eeca2df84cfd39e7dda7f2f6"
 
 [metadata.files]
 atomicwrites = [
