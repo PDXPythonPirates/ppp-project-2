@@ -1,0 +1,26 @@
+# Runs all tests from tests directory
+
+name: Run tests
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ dev-main ]
+  pull_request:
+    branches: [ dev-main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+      
+      - name: Install python dependencies
+        run: make install
+      
+      - name: Running tests
+        run: pytest tests/test*
