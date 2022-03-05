@@ -51,6 +51,9 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+# Mac stuff:
+.DS_Store
+
 # Translations
 *.mo
 *.pot
@@ -127,4 +130,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-.DS_Store
