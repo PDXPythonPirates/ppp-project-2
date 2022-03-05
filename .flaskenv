@@ -1,1 +1,4 @@
 FLASK_APP=crypto_app.py
+
+# DO NOT PUSH FOLLOWING LINE TO PROD
+FLASK_ENV=development
