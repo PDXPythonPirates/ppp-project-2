@@ -4,4 +4,5 @@ install:
 	poetry install ${POETRY_ARGS}
 	poetry shell
 	# configure the local git hooks path to run the path in the repo
+	chmod +x .githooks/hooks/*
 	git config core.hooksPath .githooks
