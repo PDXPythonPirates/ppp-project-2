@@ -6,4 +6,4 @@ install:
 	# configure the local git hooks path to run the path in the repo
 	chmod +x .githooks/hooks/*
 	find .git/hooks -type l -exec rm {} \;
-  	find .githooks -type f -exec ln -sf ../../{} .git/hooks/ \;
+	find .githooks/hooks -type f -exec ln -sf ../../{} .git/hooks/ \;

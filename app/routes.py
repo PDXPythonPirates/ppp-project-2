@@ -9,7 +9,6 @@ def index():
     posts = [
         {"author": {"username": "Sal"}, "body": "Beautiful day in Portland!"},
 
-        
         {"author": {"username": "Michael"}, "body": "Pyrates are so cool!"},
     ]
     return render_template("index.html", title="Home", user=user, posts=posts)
