@@ -80,7 +80,7 @@ dotenv = ["python-dotenv"]
 
 [[package]]
 name = "flask-bootstrap"
-version = "3.3.7.1"
+version = "3.3.7.0"
 description = "An extension that includes Bootstrap in your project, without any boilerplate code."
 category = "main"
 optional = false
@@ -252,7 +252,7 @@ email = ["email-validator"]
 [metadata]
 lock-version = "1.1"
 python-versions = "==3.8.10"
-content-hash = "43bf13bcf7cfa8b4f343f818f2135f75b9aa0e63e61de36209071a9b5d76e178"
+content-hash = "79d8f3de688e9d50317a2a31bc625fa9de6ca6231e3b36d89fd8ccf40175d252"
 
 [metadata.files]
 black = [
@@ -301,7 +301,7 @@ flask = [
     {file = "Flask-2.0.3.tar.gz", hash = "sha256:e1120c228ca2f553b470df4a5fa927ab66258467526069981b3eb0a91902687d"},
 ]
 flask-bootstrap = [
-    {file = "Flask-Bootstrap-3.3.7.1.tar.gz", hash = "sha256:cb08ed940183f6343a64e465e83b3a3f13c53e1baabb8d72b5da4545ef123ac8"},
+    {file = "Flask-Bootstrap-3.3.7.0.tar.gz", hash = "sha256:e6c86f56fa75651422aadfe2b747e6a69ad3cdb14aac8e5f6f67c860e71613d4"},
 ]
 flask-wtf = [
     {file = "Flask-WTF-1.0.0.tar.gz", hash = "sha256:872fbb17b5888bfc734edbdcf45bc08fb365ca39f69d25dc752465a455517b28"},
