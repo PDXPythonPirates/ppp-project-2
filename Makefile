@@ -10,3 +10,6 @@ install:
 	find .git/hooks -type l -exec rm {} \;
 	find .githooks/hooks -type f -exec ln -sf ../../{} .git/hooks/ \;
 	chmod +x .git/hooks/pre-commit
+
+test:
+	python -m poetry run python -m pytest -v tests
