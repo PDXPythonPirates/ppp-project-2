@@ -3,7 +3,7 @@ Repository for the second Portland Python Pyrates project
 
 ## How to boot the app
 1. run `make install` to install dependencies and jump into the virtual env
-2. run `flask run` to boot the app locally
+2. run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"
 
 ## Working with Poetry
 
