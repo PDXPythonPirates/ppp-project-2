@@ -1,0 +1,45 @@
+# Runs all tests from tests directory
+
+name: Run tests
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events
+  push:
+  pull_request:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    strategy:
+      matrix:
+        python-version: [3.8.10]
+        poetry-version: [1.1.12]
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install poetry ${{ matrix.poetry-version }}
+        run: |
+          python -m ensurepip
+          python -m pip install --upgrade pip
+          python -m pip install poetry==${{ matrix.poetry-version }}
+
+      - name: View poetry --help
+        run: poetry --help
+
+      - name: Install dependencies
+        shell: bash
+        run: python -m poetry install
+
+      - name: Running tests
+        run: |
+          python -m poetry run python -m pytest -v tests
