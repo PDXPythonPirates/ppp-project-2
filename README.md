@@ -10,7 +10,7 @@ Repository for the second Portland Python Pyrates project
 * Install a new dep/library run `poetry add <your_dep>` or `poetry add <dep> --dev`
 * Resolve poetry.lock files. Use 1. to resolve on github or 2. to resolve locally (recommended)
    1. On github **click** on resolve conflicts and follow [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github)
-   2. Locally, pull the recent changes and open the file with the conflict. Resolve the conflict to make the lock file happy (see 1.). Finally, run 'poetry update poetry.lock' (this will let poetry take the wheel and update the lock file so it can be in a good state) 
+   2. Locally, pull the recent changes. Remove the lock file with the conflict 'rm poetry.lock'. run 'make install' to regenerate the lock file. Push changes and give yourself a high five!
 * 
 
 ## Enable Virtual Environment and Install Packages
