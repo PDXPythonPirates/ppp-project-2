@@ -10,6 +10,7 @@ Flask = "==2.0.3"
 python-dotenv = "==0.19.2"
 Flask-WTF = "==1.0.0"
 pytest = "==7.0.1"
+Flask-Bootstrap = "==3.3.7"
 
 [tool.poetry.dev-dependencies]
 black = "==22.1.0"
