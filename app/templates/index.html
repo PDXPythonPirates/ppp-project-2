@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Hi, {{ user.username }}!</h1>
-{% for post in posts %}
-<div>
-    <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
-</div>
-<div></div>
-{% endfor %}
-<a href="/dashapp/" class="dash-link">
-    <span>Embdedded Plotly Dash</span>
-    <i class="fas fa-arrow-right"></i>
-</a>
-</div>
+     <div class="container">
+        <h1>Hi, {{ user.username }}!</h1>
+     </div>
+        {% for post in posts %}
+        <div class="container">
+            <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
+        </div>
+        {% endfor %}
 {% endblock %}

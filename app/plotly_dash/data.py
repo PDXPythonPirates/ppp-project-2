@@ -1,11 +1,14 @@
 """Prepare data for Plotly Dash."""
+import os
+
 import numpy as np
 import pandas as pd
 
 
 def create_dataframe():
     """Create Pandas DataFrame from local CSV."""
-    df = pd.read_csv("app/plotly_dash/data/311-calls.csv", parse_dates=["created"])
+    file_path = os.path.join(os.getcwd(), "app/plotly_dash/data/311-calls.csv")
+    df = pd.read_csv(file_path, parse_dates=["created"])
     df["created"] = df["created"].dt.date
     df.drop(columns=["incident_zip"], inplace=True)
     num_complaints = df["complaint_type"].value_counts()

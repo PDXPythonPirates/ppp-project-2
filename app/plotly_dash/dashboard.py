@@ -3,8 +3,6 @@ import dash
 from dash import dcc
 from dash import html
 from dash import dash_table
-import numpy as np
-import pandas as pd
 
 from .data import create_dataframe
 from .dash_layout import html_layout
@@ -14,7 +12,7 @@ def init_dashboard(server):
     """Create a Plotly Dash dashboard."""
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix="/dashapp/",
+        routes_pathname_prefix="/dash/",
         external_stylesheets=[
             "/dashapp/dash_assets/header.css",
             "/dashapp/dash_assets/typography.css",

@@ -9,9 +9,10 @@ Bootstrap(app)
 
 app.config.from_object(Config)
 
+
 with app.app_context():
     # Import parts of our core Flask app
-    from app import routes
+    from app import routes, errors  # noqa
 
     # Import Dash application
     from .plotly_dash.dashboard import init_dashboard
