@@ -15,7 +15,7 @@ COINS = [
     "litecoin",
 ]
 
-DAYS = 80  # Gets 80 days worth of historical data. 1 hr granularity.
+DAYS = 7  # Gets 7 days worth of historical data. 1 hr granularity.
 
 
 def save_df(df):

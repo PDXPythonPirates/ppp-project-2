@@ -6,8 +6,9 @@ from dash import dcc
 from dash import html
 from dash import dash_table
 from flask import render_template_string
+import plotly.express as px
 
-from .data import create_dataframe
+from .coingecko_data import get_price_data
 
 
 def render_base_html(server):
@@ -36,37 +37,35 @@ def init_dashboard(server):
     )
 
     # Load DataFrame
-    df = create_dataframe()
+    df = get_price_data()
 
     # Custom HTML layout
     dash_app.index_string = render_base_html(server)
 
-    # Create Layout
+    # Basic Fig
+    fig = px.line(df, x="datetime", y="value", color="currency_name")
+    fig.update_layout(
+        title={
+            "text": "Coingecko Price Data",
+            "y": 0.95,
+            "x": 0.5,
+            "xanchor": "center",
+            "yanchor": "top",
+        },
+        xaxis_title="Date",
+        yaxis_title="Price (USD)",
+        legend_title="Currency Name",
+    )
+
+    # Create Dash Layout
     dash_app.layout = html.Div(
         children=[
-            dcc.Graph(
-                id="histogram-graph",
-                figure={
-                    "data": [
-                        {
-                            "x": df["complaint_type"],
-                            "text": df["complaint_type"],
-                            "customdata": df["key"],
-                            "name": "311 Calls by region.",
-                            "type": "histogram",
-                        }
-                    ],
-                    "layout": {
-                        "title": "NYC 311 Calls category.",
-                        "height": 500,
-                        "padding": 150,
-                    },
-                },
-            ),
+            dcc.Graph(id="graph", figure=fig),
             create_data_table(df),
         ],
         id="dash-container",
     )
+
     return dash_app.server
 
 
@@ -78,6 +77,7 @@ def create_data_table(df):
         data=df.to_dict("records"),
         sort_action="native",
         sort_mode="native",
+        style_cell={"textAlign": "center"},
         page_size=300,
     )
     return table
