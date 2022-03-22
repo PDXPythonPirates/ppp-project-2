@@ -9,44 +9,69 @@ from pycoingecko import CoinGeckoAPI
 
 CG = CoinGeckoAPI()
 
+COINS = [
+    "bitcoin",
+    "ethereum",
+    "litecoin",
+]
 
-def get_data():
-    """Gets coin data.
-
-    Return:{
-            'bitcoin': {'usd': 42848, 'usd_market_cap': 814398164374.8334},
-            'ethereum': {'usd': 3015.62, 'usd_market_cap': 362696885499.07214},
-            'litecoin': {'usd': 120.44, 'usd_market_cap': 8426034198.539223},
-            }
-    """
-    stock_data = CG.get_price(
-        ids="bitcoin, litecoin, ethereum",
-        vs_currencies="usd",
-        include_market_cap=True,
-        include_24hr_vol=True,
-        include_24hr_change=True,
-        include_last_updated_at=True,
-    )
-
-    return stock_data
+DAYS = 80  # Gets 80 days worth of historical data. 1 hr granularity.
 
 
-def save_data(data):
+def save_df(df):
     """Save the data locally for now."""
     file_dir = os.path.dirname(os.path.abspath(__file__))
     csv_folder = "data"
-    data_file = os.path.join(file_dir, csv_folder, "coingecko_data.csv")
-
+    data_file = os.path.join(file_dir, csv_folder, "coingecko_price_data.csv")
+    # remove the file everytime we run this
     if os.path.exists(data_file):
         os.remove(data_file)
 
-    df = pd.DataFrame.from_dict(data, orient="index")
-    df.insert(loc=0, column="coin", value=data.keys())
     df.to_csv(data_file, index=False)
 
     return
 
 
+def get_price_data():
+    """Gets coin price data."""
+
+    data = {}
+    for coin in COINS:
+        try:
+            timestamp_price_lists = CG.get_coin_market_chart_by_id(
+                id=coin, vs_currency="usd", days=DAYS
+            ).get("prices")
+            data[coin] = {}
+            data[coin]["timestamps"], data[coin]["values"] = zip(
+                *timestamp_price_lists
+            )
+
+        except Exception as e:
+            print(e)
+            print("coin: " + coin)
+
+    frame_list = [
+        pd.DataFrame(
+            data[coin]["values"], index=data[coin]["timestamps"], columns=[coin]
+        )
+        for coin in COINS
+        if coin in data
+    ]
+
+    df = pd.concat(frame_list, axis=1).sort_index()
+    df["datetime"] = pd.to_datetime(df.index, unit="ms")
+    df["date"] = df["datetime"].dt.date
+    df["hour"] = df["datetime"].dt.hour
+    df = df.melt(
+        id_vars=["datetime", "date", "hour"],
+        var_name="currency_name",
+        ignore_index=True,
+    )
+    df = df[df["value"].notna()]
+
+    return df
+
+
 if __name__ == "__main__":
-    data = get_data()
-    save_data(data)
+    data = get_price_data()
+    save_df(data)
