@@ -1,6 +1,18 @@
 # ppp-project-2
 Repository for the second Portland Python Pyrates project
 
+## How to boot the app
+1. run `make install` to install dependencies and jump into the virtual env
+2. run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"
+
+## Working with Poetry
+
+* Install a new dep/library run `poetry add <your_dep>` or `poetry add <dep> --dev`
+* Resolve poetry.lock files. Use 1. to resolve on github or 2. to resolve locally (recommended)
+   1. On github **click** on resolve conflicts and follow [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github)
+   2. Locally, pull the recent changes. Remove the lock file with the conflict `rm poetry.lock`. run `make install` to regenerate the lock file. Push changes and give yourself a high five!
+* 
+
 ## Enable Virtual Environment and Install Packages
 
 ### Mac
