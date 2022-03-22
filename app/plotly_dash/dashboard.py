@@ -1,15 +1,30 @@
 """Instantiate a Dash app."""
+import os
+
 import dash
 from dash import dcc
 from dash import html
 from dash import dash_table
+from flask import render_template_string
 
 from .data import create_dataframe
-from .dash_layout import html_layout
+
+
+def render_base_html(server):
+
+    with server.app_context(), server.test_request_context():
+        layout_dash = os.path.join(
+            os.getcwd(), "app/plotly_dash/dash_layout.html"
+        )
+        with open(layout_dash, "r") as f:
+            html_body = render_template_string(f.read())
+
+    return html_body
 
 
 def init_dashboard(server):
     """Create a Plotly Dash dashboard."""
+
     dash_app = dash.Dash(
         server=server,
         routes_pathname_prefix="/dash/",
@@ -24,7 +39,7 @@ def init_dashboard(server):
     df = create_dataframe()
 
     # Custom HTML layout
-    dash_app.index_string = html_layout
+    dash_app.index_string = render_base_html(server)
 
     # Create Layout
     dash_app.layout = html.Div(
