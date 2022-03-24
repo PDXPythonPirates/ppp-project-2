@@ -12,3 +12,13 @@ def index():
         {"author": {"username": "Scott"}, "body": "Ooh, Bootstrap!"},
     ]
     return render_template("index.html", title="Home", user=user, posts=posts)
+
+
+@app.route("/login")
+def login():
+    return render_template("wip.html")
+
+
+@app.route("/register")
+def register():
+    return render_template("wip.html")
