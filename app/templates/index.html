@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-     <div class="container">
-        <h1>Hi, {{ user.username }}!</h1>
-     </div>
-        {% for post in posts %}
-        <div class="container">
-            <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
-        </div>
-        {% endfor %}
+
+{% for category,message in get_flashed_messages(with_categories=True) %}
+{% if category=="login_success" %}
+<div class="flashed">
+   {{ message}}
+</div>
+{% endif %}
+{% endfor %}
+
+<div class="container">
+   <h1>Hi, {{ user.username }}!</h1>
+</div>
+{% for post in posts %}
+<div class="container">
+   <p>{{ post.author.username }} says: <b>{{ post.body }}</b></p>
+</div>
+{% endfor %}
 {% endblock %}

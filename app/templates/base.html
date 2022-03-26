@@ -1,28 +1,34 @@
 {% extends "bootstrap/base.html" %}
 
 {% block title %}
-    {% if title %}{{ title }} - Crypto News {% else %}Welcome to Crypto News{% endif %}
+{% if title %}{{ title }} - Crypto News {% else %}Welcome to Crypto News{% endif %}
 {% endblock %}
+<!-- ends bootstrap title block-->
 
 {% block navbar %}
-    <nav class="navbar navbar-inverse">
-        {# fluid shifts header to left #}
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('index') }}">Crypto App</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                    <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-inverse">
+    {# fluid shifts header to left #}
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Crypto App</a>
         </div>
-    </nav>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 {% endblock %}
+<!--ends bootstrap navbar-->
 
 {% block content %}
+
+{# application content needs to be provided in the app_content block #}
+{% block app_content %} {% endblock %} {# app_content block in inheriting children #}
 {% endblock %}
+<!--ends bootstrap content block

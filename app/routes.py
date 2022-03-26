@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 from app import app
+from app.forms import LoginForm
 
 
 @app.route("/")
@@ -14,9 +15,19 @@ def index():
     return render_template("index.html", title="Home", user=user, posts=posts)
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("wip.html")
+    newLoginForm = LoginForm()
+    if newLoginForm.validate_on_submit():
+        errorMessage = (
+            f"Login requested with info..."
+            f"User:{newLoginForm.username.data}, "
+            f"Password:{newLoginForm.password.data}, "
+            f"Remember:{newLoginForm.remember_me.data}"
+        )
+        flash(errorMessage, "login_success")
+        return redirect(url_for("index"))
+    return render_template("login.html", title="Sign In", form=newLoginForm)
 
 
 @app.route("/register")
