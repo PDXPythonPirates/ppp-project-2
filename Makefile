@@ -29,9 +29,28 @@ run:
 		docker logs --follow ppp-project-2;\
     fi
 
+logs:
+	docker logs --follow ppp-project-2
+
 stop:
 	@if [[ $$(docker ps -aq) ]]; then\
+		echo "Stopping Containers";\
         docker stop $$(docker ps -aq);\
     fi
 	docker system prune -a --force
 	docker volume prune --force
+
+define help_info
+
+make install: 	installs poetry and boots virtual env
+make test:      runs all tests
+make build:   	builds docker containers
+make run:     	boots the containers on local port 5000 and open page
+make logs:    	tails the logs if you exited 
+make stop:    	stops all running containers and prunes
+
+endef
+export help_info
+
+help:
+	@echo "$$help_info"
