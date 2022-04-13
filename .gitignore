@@ -51,6 +51,9 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+# Mac stuff:
+.DS_Store
+
 # Translations
 *.mo
 *.pot
@@ -114,6 +117,9 @@ venv.bak/
 .spyderproject
 .spyproject
 
+# VS Code specs
+.vscode/
+
 # Rope project settings
 .ropeproject
 
@@ -127,3 +133,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
