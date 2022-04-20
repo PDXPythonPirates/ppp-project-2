@@ -14,7 +14,10 @@ python-dotenv = "==0.19.2"
 Flask-WTF = "==1.0.0"
 pytest = "==7.0.1"
 Flask-Bootstrap = "==3.3.7"
+Flask-SQLAlchemy = "==2.5.1"
+Flask-Migrate = "==3.1.0"
 pycoingecko = "==2.2.0"
+Werkzeug = "==2.0.0" # required pin https://github.com/plotly/dash/issues/1992
 
 [tool.poetry.dev-dependencies]
 black = "==22.3.0"
