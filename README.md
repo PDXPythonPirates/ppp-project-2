@@ -1,9 +1,22 @@
 # ppp-project-2
 Repository for the second Portland Python Pyrates project
 
-## How to boot the app
-1. run `make install` to install dependencies and jump into the virtual env
-2. run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"
+## How to boot the app 
+- #### In your local environment
+    1. run `make install` to install dependencies and jump into the virtual env
+    2. run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"
+
+- #### With docker containers
+    1. run `make install` to install dependencies and jump into the virtual env
+    2. run `make build` to build the docker image
+    3. run `make run` to run the docker containers locally and open on  http://localhost:5000
+        * run `make stop` to stop containers and prune after finished with changes
+
+## Working with Docker
+* Install Docker by following the instructions on [their site](https://docs.docker.com/get-docker/)
+* run `make build` to build the docker image
+* run `make run` to run the docker containers locally and open on  http://localhost:5000
+* run `make stop` to stop containers and prune
 
 ## Working with Poetry
 
@@ -11,7 +24,7 @@ Repository for the second Portland Python Pyrates project
 * Resolve poetry.lock files. Use 1. to resolve on github or 2. to resolve locally (recommended)
    1. On github **click** on resolve conflicts and follow [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github)
    2. Locally, pull the recent changes. Remove the lock file with the conflict `rm poetry.lock`. run `make install` to regenerate the lock file. Push changes and give yourself a high five!
-* 
+*
 
 ## Enable Virtual Environment and Install Packages
 
