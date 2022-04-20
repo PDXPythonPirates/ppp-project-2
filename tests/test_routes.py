@@ -10,3 +10,8 @@ class TestRoutes:
         response = app.test_client().get("/")
 
         assert response.status_code == 200
+
+    def test_login_route(self):
+        response = app.test_client().get("/login")
+
+        assert response.status_code == 200
