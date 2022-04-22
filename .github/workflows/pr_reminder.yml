@@ -13,7 +13,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        webhook-url: '' # Required
+        webhook-url: 'https://hooks.slack.com/services/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' # Required
         provider: 'slack' # Required (slack or msteams)
         channel: '#ppp-cohort-2' # Optional, eg: #general
         github-provider-map: 'SalMireles:U01USSJEBLY,CloudF1sh:U0332BZFETG,Scott-Larsen:U032UGU1HFH,misaccs:U033B9P4X1S,lildonpancho:UCJM4HJ2U' # Optional
