@@ -14,6 +14,16 @@ install:
 test:
 	python -m poetry run python -m pytest -v tests
 
+up:
+	docker-compose up -d; \
+	sleep 5;\
+	open http://localhost:5000;\
+	docker logs --follow ppp-project-2;\
+
+down:
+	docker-compose down
+	$(MAKE) stop
+
 build:
 	@# suppress the docker scan message then build
 	@export DOCKER_SCAN_SUGGEST=false; \
@@ -55,8 +65,10 @@ define help_info
 
 make install: 	installs poetry and boots virtual env
 make test:      runs all tests
+make up:		use docker compose to spin up the app and sql containers
+make down:      use docker compose to shut down containers
 make build:   	builds docker containers
-make run:		build sql db container
+make db:		build sql db container
 make run:     	boots the containers on local port 5000 and opens page
 make logs:    	tails the logs if you exited 
 make stop:    	stops all running containers and prunes
