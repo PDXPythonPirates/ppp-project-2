@@ -1,5 +1,9 @@
-"""Gets crypto data from coingecko API
-(https://www.coingecko.com/api/docs/v3)."""
+"""Gets crypto data from coingecko API.
+
+References:
+1. https://www.coingecko.com/api/docs/v3
+2. https://algotrading101.com/learn/coingecko-api-guide/
+"""
 
 import os
 
@@ -44,6 +48,25 @@ def get_coins_info():
     return coin_info_df
 
 
+def get_dev_coin_data_for_ui():
+    """Stores data locally that will be used to start rendering the
+    user page.
+
+    UI info: Show a list of coin names and for each coin name show a plot with
+    data.
+    """
+    # let's get data for trending coins
+    trending_coins = CG.get_search_trending()
+    data = [
+        (coin.get("item").get("id"), coin.get("item").get("name"))
+        for coin in trending_coins.get("coins")
+    ]
+    df = pd.DataFrame(data, columns=["coin_id", "coin_name"])
+    # TODO: get coin data
+
+    return df
+
+
 def get_price_data():
     """Gets coin price data."""
 
@@ -85,7 +108,8 @@ def get_price_data():
 
 
 if __name__ == "__main__":
-    # data = get_price_data()
-    # save_df_locally(data, filename= "coingecko_price_data")
+    data = get_price_data()
+    save_df_locally(data, filename="coingecko_price_data")
     coin_info = get_coins_info()
     save_df_locally(coin_info, file_name="coingecko_coin_info")
+    get_dev_coin_data_for_ui()
