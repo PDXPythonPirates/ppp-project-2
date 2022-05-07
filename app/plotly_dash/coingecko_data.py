@@ -109,7 +109,7 @@ def get_price_data():
 
 if __name__ == "__main__":
     data = get_price_data()
-    save_df_locally(data, filename="coingecko_price_data")
+    save_df_locally(data, file_name="coingecko_price_data")
     coin_info = get_coins_info()
     save_df_locally(coin_info, file_name="coingecko_coin_info")
     get_dev_coin_data_for_ui()
