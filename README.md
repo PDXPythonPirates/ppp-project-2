@@ -16,6 +16,18 @@ Repository for the second Portland Python Pyrates project
    </ul>
 </details>
 
+<details>
+<summary>Pre-configuration install Notes for Windows</summary>
+<br>
+   <ul>
+
+<li>Install choclatey as an administrator (from powershell): https://chocolatey.org/install</li>
+<li> Use choco to install make (also from the powershel as admin): `choco install make`</li>
+<li> MYSQL_PASSWORD</li>
+
+   </ul>
+</details>
+
 - #### In your local environment
     1. run `make install` to install dependencies and jump into the virtual env
     2. run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"
