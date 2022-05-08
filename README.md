@@ -23,7 +23,8 @@ Repository for the second Portland Python Pyrates project
 
 <li>Install choclatey as an administrator (from powershell): https://chocolatey.org/install</li>
 <li> Use choco to install make (also from the powershel as admin): `choco install make`</li>
-<li> MYSQL_PASSWORD</li>
+<li> As of 05/08/21 poetry is not working for Windows. Use docker containers until resolved.<li>
+<li> Use WSL to execute make commands on windows. Alternatively, you can run the commands in the make file one by one.</li>
 
    </ul>
 </details>
@@ -34,7 +35,7 @@ Repository for the second Portland Python Pyrates project
 
 - #### With docker containers + docker compose
     1. run `make up` to run the docker containers locally and open on  http://localhost:5000 (**this also boots a mysql container**)
-    2. run `make stop` to stop containers and prune
+    2. run `make down` to stop containers and prune
 
 ## Working with Docker
 * Install Docker by following the instructions on [their site](https://docs.docker.com/get-docker/)
