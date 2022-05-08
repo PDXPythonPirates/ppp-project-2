@@ -99,7 +99,7 @@ def get_price_data():
     df["hour"] = df["datetime"].dt.hour
     df = df.melt(
         id_vars=["datetime", "date", "hour"],
-        var_name="currency_name",
+        var_name="coin_name",
         ignore_index=True,
     )
     df = df[df["value"].notna()]
