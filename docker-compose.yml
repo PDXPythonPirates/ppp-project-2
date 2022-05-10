@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  flask-app:
+    container_name: ppp-project-2
+    build:
+      # build the image from Dockerfile
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      # set database credentials
+      DATABASE_URL: mysql+pymysql://pyrates:iamyourcaptain@mysql/pyrates
+    restart: always
+    depends_on:
+      # build those images first
+      - mysql
+    links:
+      # network connection with these services
+      - mysql
+    ports:
+      # local port: container port
+      - '5000:5000'
+    volumes:
+      - ./app:/app
+
+  mysql:
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:5.7
+    platform: linux/amd64
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: pyrates
+      MYSQL_USER: pyrates
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_HOST: '%'
+
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '33060:3306'
+      # Where our data will be persisted
+    volumes:
+      # pass volume named mysql-data to mysql container
+      - mysql-data:/var/lib/mysql
+
+# Names our volume
+volumes:
+  # just a persistance data
+  mysql-data:
+    driver: local
