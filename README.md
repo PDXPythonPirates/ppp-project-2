@@ -21,9 +21,9 @@ Repository for the second Portland Python Pyrates project
 <br>
    <ul>
 
-<li>Install choclatey as an administrator (from powershell): https://chocolatey.org/install</li>
+<li> Install choclatey as an administrator (from powershell): https://chocolatey.org/install</li>
 <li> Use choco to install make (also from the powershel as admin): `choco install make`</li>
-<li> As of 05/08/21 poetry is not working for Windows. Use docker containers until resolved.<li>
+<li> Install poetry. This can be a pain on Windowns. Use docker containers or another virtual environment.</li>
 <li> Use WSL to execute make commands on windows. Alternatively, you can run the commands in the make file one by one.</li>
 
    </ul>
