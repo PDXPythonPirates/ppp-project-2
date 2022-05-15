@@ -94,7 +94,7 @@ Help with various installation/setup issues:
 
 #### Mac
 
-##### Edit to add
+- Error port 5000 already in use. How to free up this port: system preferences > sharing > uncheck airplay receiver.
 
 ## References
 1. [Flask Mega Tutorial - by Miguel Grinberg - 2018](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
