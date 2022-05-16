@@ -1,4 +1,4 @@
-# ppp-project-2
+# bloop
 Repository for the second Portland Python Pyrates project
 
 ## How to boot the app
