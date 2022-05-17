@@ -3,6 +3,7 @@ from app import app,db
 from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from app.models import User
 
 
 @app.route("/")
@@ -15,7 +16,7 @@ def index():
         {"author": {"username": "Scott"}, "body": "Ooh, Bootstrap!"},
         {"author": {"username": "Allyson"}, "body": "Hello, World!"},
     ]
-    return render_template("index.html", title="Home", user=user, posts=posts)
+    return render_template("index.html", title="Home", posts=posts)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -54,3 +55,12 @@ def register():
         flash('WELCOME!  YOU GOT CRYPTO!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username.data).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+    ]
+    return render_template('user.html', user=user, posts=posts)
