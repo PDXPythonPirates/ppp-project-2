@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     environment:
       # set database credentials
-      DATABASE_URL: mysql+pymysql://pyrates:iamyourcaptain@mysql/pyrates
+      DATABASE_URL_DOCKER: ${DATABASE_URL_DOCKER}
     restart: always
     depends_on:
       # build those images first
@@ -25,20 +25,21 @@ services:
 
   mysql:
     container_name: mysql
-    command: --default-authentication-plugin=mysql_native_password
     image: mysql:5.7
     platform: linux/amd64
     restart: always
+    # Compose supports declaring default environment variables in an environment file named .env
+    # Don't believe me? Run this command: docker exec mysql env | grep MYSQL_ROOT_PASSWORD | cut -d'=' -f2
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: pyrates
-      MYSQL_USER: pyrates
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_HOST: '%'
+      # MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
 
     ports:
       # <Port exposed> : < MySQL Port running inside container>
-      - '33060:3306'
+      - '7777:3306'
       # Where our data will be persisted
     volumes:
       # pass volume named mysql-data to mysql container

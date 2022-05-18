@@ -15,6 +15,7 @@ test:
 	python -m poetry run python -m pytest -v tests
 
 up:
+	$(MAKE) down
 	docker-compose up -d; \
 	sleep 5;\
 	open http://localhost:5000;\
