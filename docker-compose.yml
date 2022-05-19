@@ -10,7 +10,7 @@ services:
     environment:
       # set database credentials
       DATABASE_URL_DOCKER: ${DATABASE_URL_DOCKER}
-    restart: on-failure
+    restart: always
     depends_on:
       # build those images first
       - mysql
@@ -34,7 +34,7 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
-      # MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_HOST: '%'
     ports:
       # <Port exposed> : < MySQL Port running inside container>
       - '33060:3306'
