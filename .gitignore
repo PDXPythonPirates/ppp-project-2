@@ -52,7 +52,7 @@ coverage.xml
 .pytest_cache/
 
 # Mac stuff:
-.DS_Store
+*.DS_Store
 
 # Translations
 *.mo
