@@ -8,6 +8,7 @@ from app.models import User
 
 @app.route("/")
 @app.route("/index")
+@login_required
 def index():
     user = {"username": "Fellow Pyrates"}
     posts = [
@@ -57,7 +58,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 @app.route('/user/<username>')
-
+@login_required
 def user(username):
     user = User.query.filter_by(username=username.data).first_or_404()
     posts = [
