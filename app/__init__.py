@@ -13,14 +13,13 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 
-db.create_all()
-
-
 with app.app_context():
     # Import parts of our core Flask app
-    from app import routes, errors, models  # noqa
+    from app import routes, errors, models, db  # noqa
 
     # Import Dash application
     from .plotly_dash.dashboard import init_dashboard
 
     app = init_dashboard(app)
+
+    db.create_all()

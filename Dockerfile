@@ -55,7 +55,6 @@ COPY . .
 # copy project
 COPY . /opt/pysetup/
 
-# init mysql container
-CMD ["sh","-c","chmod -R 777 /opt/pysetup && /opt/pysetup/entrypoint.sh"]
-
+# init containers via script
 EXPOSE 5000
+CMD ["sh","-c","chmod -R 777 /opt/pysetup && /opt/pysetup/entrypoint.sh"]
