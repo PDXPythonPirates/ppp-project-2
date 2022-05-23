@@ -55,9 +55,6 @@ COPY . .
 # copy project
 COPY . /opt/pysetup/
 
-# RUN chmod 777 /opt/pysetup/app_run.py
-# RUN chmod -x /opt/pysetup/app_run.py
-
 # init mysql container
 CMD ["sh","-c","chmod -R 777 /opt/pysetup && /opt/pysetup/entrypoint.sh"]
 
