@@ -3,6 +3,9 @@
 ###############################################
 FROM python:3.8.10 as python-base
 
+# set work directory
+WORKDIR /usr/src/app
+
 # poetry env requirements
 ARG PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -13,7 +16,7 @@ ARG PYTHONUNBUFFERED=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
-    PYSETUP_PATH="/opt/pysetup" \
+    PYSETUP_PATH="/usr/src/app" \
     VENV_PATH="/opt/pysetup/.venv"
 # prepend poetry and venv to path
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
@@ -28,6 +31,7 @@ ENV FLASK_DEBUG=false
 FROM python-base as builder-base
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
+    && apt-get install -y netcat \
     # deps for installing poetry
     curl \
     # deps for building python deps
@@ -37,6 +41,8 @@ RUN apt-get update \
     && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
 # copy project requirement files here to ensure they will be cached.
+# set working directory
+RUN mkdir -p $PYSETUP_PATH
 WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 
@@ -46,6 +52,11 @@ RUN poetry install --no-dev
 # Copy required files
 COPY . .
 
-# Run Application
-EXPOSE 5000
-ENTRYPOINT flask run --host=0.0.0.0
+# copy project
+COPY . /usr/src/app/
+
+RUN chmod 777 /usr/src/app/app_run.py
+RUN chmod -x /usr/src/app/app_run.py
+
+# run server
+CMD ["sh","-c","chmod -R 777 /usr/src/app && /usr/src/app/entrypoint.sh"]
