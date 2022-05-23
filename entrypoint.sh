@@ -11,6 +11,6 @@ then
     echo "mySQL started"
 fi
 
-# poetry run /usr/src/app/app_run.py run -h 0.0.0.0
+poetry run flask run --host=0.0.0.0
 
 exec "$@"

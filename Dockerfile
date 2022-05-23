@@ -4,7 +4,7 @@
 FROM python:3.8.10 as python-base
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /opt/pysetup
 
 # poetry env requirements
 ARG PYTHONUNBUFFERED=1 \
@@ -16,7 +16,7 @@ ARG PYTHONUNBUFFERED=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
-    PYSETUP_PATH="/usr/src/app" \
+    PYSETUP_PATH="/opt/pysetup" \
     VENV_PATH="/opt/pysetup/.venv"
 # prepend poetry and venv to path
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
@@ -53,10 +53,12 @@ RUN poetry install --no-dev
 COPY . .
 
 # copy project
-COPY . /usr/src/app/
+COPY . /opt/pysetup/
 
-RUN chmod 777 /usr/src/app/app_run.py
-RUN chmod -x /usr/src/app/app_run.py
+# RUN chmod 777 /opt/pysetup/app_run.py
+# RUN chmod -x /opt/pysetup/app_run.py
 
-# run server
-CMD ["sh","-c","chmod -R 777 /usr/src/app && /usr/src/app/entrypoint.sh"]
+# init mysql container
+CMD ["sh","-c","chmod -R 777 /opt/pysetup && /opt/pysetup/entrypoint.sh"]
+
+EXPOSE 5000
