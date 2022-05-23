@@ -16,13 +16,26 @@ Repository for the second Portland Python Pyrates project
    </ul>
 </details>
 
+<details>
+<summary>Pre-configuration install Notes for Windows</summary>
+<br>
+   <ul>
+
+<li> Install choclatey as an administrator (from powershell): https://chocolatey.org/install</li>
+<li> Use choco to install make (also from the powershel as admin): `choco install make`</li>
+<li> Install poetry. This can be a pain on Windowns. Use docker containers or another virtual environment.</li>
+<li> Use WSL to execute make commands on windows. Alternatively, you can run the commands in the make file one by one.</li>
+
+   </ul>
+</details>
+
 - #### In your local environment
     1. run `make install` to install dependencies and jump into the virtual env
     2. run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"
 
 - #### With docker containers + docker compose
     1. run `make up` to run the docker containers locally and open on  http://localhost:5000 (**this also boots a mysql container**)
-    2. run `make stop` to stop containers and prune
+    2. run `make down` to stop containers and prune
 
 ## Working with Docker
 * Install Docker by following the instructions on [their site](https://docs.docker.com/get-docker/)
@@ -81,7 +94,7 @@ Help with various installation/setup issues:
 
 #### Mac
 
-##### Edit to add
+- Error port 5000 already in use. How to free up this port: system preferences > sharing > uncheck airplay receiver.
 
 ## References
 1. [Flask Mega Tutorial - by Miguel Grinberg - 2018](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
