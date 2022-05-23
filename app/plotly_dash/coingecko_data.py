@@ -1,5 +1,9 @@
-"""Gets crypto data from coingecko API
-(https://www.coingecko.com/api/docs/v3)."""
+"""Gets crypto data from coingecko API.
+
+References:
+1. https://www.coingecko.com/api/docs/v3
+2. https://algotrading101.com/learn/coingecko-api-guide/
+"""
 
 import os
 
@@ -18,11 +22,11 @@ COINS = [
 DAYS = 7  # Gets 7 days worth of historical data. 1 hr granularity.
 
 
-def save_df(df):
+def save_df_locally(df, file_name):
     """Save the data locally for now."""
     file_dir = os.path.dirname(os.path.abspath(__file__))
     csv_folder = "data"
-    data_file = os.path.join(file_dir, csv_folder, "coingecko_price_data.csv")
+    data_file = os.path.join(file_dir, csv_folder, f"{file_name}.csv")
     # remove the file everytime we run this
     if os.path.exists(data_file):
         os.remove(data_file)
@@ -30,6 +34,37 @@ def save_df(df):
     df.to_csv(data_file, index=False)
 
     return
+
+
+def get_coins_info():
+    """Gets the info for supported coins on CoinGecko.
+
+    Output: List of dictionaries with coin id, coin symbol, and coin name.
+        ex: [{'id': 'zytara-dollar', 'symbol': 'zusd', 'name': 'Zytara Dollar'},
+                {'id': 'zyx', 'symbol': 'zyx', 'name': 'ZYX'}]
+    """
+    coin_info_df = pd.DataFrame(CG.get_coins_list())
+
+    return coin_info_df
+
+
+def get_dev_coin_data_for_ui():
+    """Stores data locally that will be used to start rendering the
+    user page.
+
+    UI info: Show a list of coin names and for each coin name show a plot with
+    data.
+    """
+    # let's get data for trending coins
+    trending_coins = CG.get_search_trending()
+    data = [
+        (coin.get("item").get("id"), coin.get("item").get("name"))
+        for coin in trending_coins.get("coins")
+    ]
+    df = pd.DataFrame(data, columns=["coin_id", "coin_name"])
+    # TODO: get coin data
+
+    return df
 
 
 def get_price_data():
@@ -64,7 +99,7 @@ def get_price_data():
     df["hour"] = df["datetime"].dt.hour
     df = df.melt(
         id_vars=["datetime", "date", "hour"],
-        var_name="currency_name",
+        var_name="coin_name",
         ignore_index=True,
     )
     df = df[df["value"].notna()]
@@ -74,4 +109,7 @@ def get_price_data():
 
 if __name__ == "__main__":
     data = get_price_data()
-    save_df(data)
+    save_df_locally(data, file_name="coingecko_price_data")
+    coin_info = get_coins_info()
+    save_df_locally(coin_info, file_name="coingecko_coin_info")
+    get_dev_coin_data_for_ui()

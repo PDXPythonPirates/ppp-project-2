@@ -43,7 +43,7 @@ def init_dashboard(server):
     dash_app.index_string = render_base_html(server)
 
     # Basic Fig
-    fig = px.line(df, x="datetime", y="value", color="currency_name")
+    fig = px.line(df, x="datetime", y="value", color="coin_name")
     fig.update_layout(
         title={
             "text": "Coingecko Price Data",
@@ -54,7 +54,7 @@ def init_dashboard(server):
         },
         xaxis_title="Date",
         yaxis_title="Price (USD)",
-        legend_title="Currency Name",
+        legend_title="Coin Name",
     )
 
     # Create Dash Layout
