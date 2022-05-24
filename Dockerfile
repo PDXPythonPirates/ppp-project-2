@@ -3,6 +3,9 @@
 ###############################################
 FROM python:3.8.10 as python-base
 
+# set work directory
+WORKDIR /opt/pysetup
+
 # poetry env requirements
 ARG PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -28,6 +31,7 @@ ENV FLASK_DEBUG=false
 FROM python-base as builder-base
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
+    && apt-get install -y netcat \
     # deps for installing poetry
     curl \
     # deps for building python deps
@@ -37,6 +41,8 @@ RUN apt-get update \
     && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
 # copy project requirement files here to ensure they will be cached.
+# set working directory
+RUN mkdir -p $PYSETUP_PATH
 WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 
@@ -46,6 +52,9 @@ RUN poetry install --no-dev
 # Copy required files
 COPY . .
 
-# Run Application
+# copy project
+COPY . /opt/pysetup/
+
+# init containers via script
 EXPOSE 5000
-ENTRYPOINT flask run --host=0.0.0.0
+CMD ["sh","-c","chmod -R 777 /opt/pysetup && /opt/pysetup/entrypoint.sh"]
