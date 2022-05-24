@@ -9,8 +9,12 @@ Repository for the second Portland Python Pyrates project
    <ul>
 
 <li> DATABASE_URL</li>
-<li> MYSQL_ROOT_PASSWORD</li>
-<li> MYSQL_PASSWORD</li>
+<li> DB_USER</li>
+<li> DB_PASSWORD</li>
+<li> DB_HOST</li>
+<li> DB_NAME</li>
+<li> DB_PORT</li>
+<li> DATABASE_URL_DOCKER</li>
 
    </ul>
 </details>
