@@ -35,7 +35,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-@login.user_loaders
+@login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 class Coin(db.Model):
