@@ -33,18 +33,19 @@ Repository for the second Portland Python Pyrates project
 </details>
 
 ## How to boot the app
-- #### With docker compose (recommended)
-    1. run `make up` to run the docker containers locally and open on  http://localhost:5000 (**this also boots a mysql container**)
-    2. run `make down` to stop containers and prune
+- #### With docker compose (recommended for prod)
+    1. run `make up` 
+       * Runs the docker containers locally and opens on  http://localhost:5000 (this also boots a mysql container)
+    2. run `make down` 
+       * Stops containers and prunes
 
-<details>
-<summary>In your local environment</summary>
-<br>
-   <ul>
-<li> run `make install` to install dependencies and jump into the virtual env </li>
-<li>run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"</li>
-   </ul>
-</details>
+- #### In your local environment (recommended for dev)
+    1. run `make install` 
+       * Installs dependencies and jump into the virtual env
+    2. run `flask run` 
+       * Boots the app locally. Make sure you are in the top level directory that has the file "app_run.py"
+
+
 ## Working with Docker
 * Install Docker by following the instructions on [their site](https://docs.docker.com/get-docker/)
 * run `make stop` to stop containers and prune
