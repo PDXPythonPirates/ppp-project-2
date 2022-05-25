@@ -1,7 +1,9 @@
+# to boot the app run `flask run` after `make install`
 install:
 	@pip install --upgrade pip
 	@pip install poetry==1.1.12
 	@poetry install ${POETRY_ARGS}
+	@poetry update
 	@poetry shell
 	@# configure the local git hooks path to run the path in the repo
 	@# Alternative approach not used here since it depends on the git version 'git config core.hooksPath .githooks/hooks'
