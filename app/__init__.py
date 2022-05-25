@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask import LoginManager
+from flask_login import LoginManager
 
 # Construct core Flask application with embedded Dash app.
 app = Flask(__name__, instance_relative_config=False)
