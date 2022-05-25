@@ -15,19 +15,15 @@ test:
 	python -m poetry run python -m pytest -v tests
 
 up:
-	docker-compose up -d; \
-	sleep 5;\
-	open http://localhost:5000;\
-	docker logs --follow ppp-project-2;\
+	@docker-compose up -d
+	@echo "waiting for mysql container to fully boot ~ 30 sec"
+	@sleep 30
+	@open http://localhost:5000
+	@docker logs --follow ppp-project-2
 
 down:
-	docker-compose down
-	$(MAKE) stop
-
-build:
-	@# suppress the docker scan message then build
-	@export DOCKER_SCAN_SUGGEST=false; \
-	docker build -t ppp-project-2 .
+	@docker-compose down
+	@$(MAKE) stop
 
 db:
 	docker run --name mysql -d -e MYSQL_RANDOM_ROOT_PASSWORD=yes \
