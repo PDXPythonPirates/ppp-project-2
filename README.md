@@ -1,7 +1,6 @@
-# ppp-project-2
+## ppp-project-2
 Repository for the second Portland Python Pyrates project
 
-## How to boot the app
   **Note**: You need an .env file with credentials to boot the mysql container locally.
 
   <details>
@@ -10,8 +9,12 @@ Repository for the second Portland Python Pyrates project
    <ul>
 
 <li> DATABASE_URL</li>
-<li> MYSQL_ROOT_PASSWORD</li>
-<li> MYSQL_PASSWORD</li>
+<li> DB_USER</li>
+<li> DB_PASSWORD</li>
+<li> DB_HOST</li>
+<li> DB_NAME</li>
+<li> DB_PORT</li>
+<li> DATABASE_URL_DOCKER</li>
 
    </ul>
 </details>
@@ -29,18 +32,22 @@ Repository for the second Portland Python Pyrates project
    </ul>
 </details>
 
-- #### In your local environment
-    1. run `make install` to install dependencies and jump into the virtual env
-    2. run `flask run` to boot the app locally. Make sure you are in the top level directory that has the file "app_run.py"
+## How to boot the app
+- #### With docker compose (recommended for prod)
+    1. run `make up` 
+       * Runs the docker containers locally and opens on  http://localhost:5000 (this also boots a mysql container)
+    2. run `make down` 
+       * Stops containers and prunes
 
-- #### With docker containers + docker compose
-    1. run `make up` to run the docker containers locally and open on  http://localhost:5000 (**this also boots a mysql container**)
-    2. run `make down` to stop containers and prune
+- #### In your local environment (recommended for dev)
+    1. run `make install` 
+       * Installs dependencies and jump into the virtual env
+    2. run `flask run` 
+       * Boots the app locally. Make sure you are in the top level directory that has the file "app_run.py"
+
 
 ## Working with Docker
 * Install Docker by following the instructions on [their site](https://docs.docker.com/get-docker/)
-* run `make build` to build the docker image
-* run `make run` to run the docker containers locally and open on  http://localhost:5000
 * run `make stop` to stop containers and prune
 
 ## Working with Poetry
@@ -49,7 +56,7 @@ Repository for the second Portland Python Pyrates project
 * Resolve poetry.lock files. Use 1. to resolve on github or 2. to resolve locally (recommended)
    1. On github **click** on resolve conflicts and follow [this guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github)
    2. Locally, pull the recent changes. Remove the lock file with the conflict `rm poetry.lock`. run `make install` to regenerate the lock file. Push changes and give yourself a high five!
-*
+
 
 ## Enable Virtual Environment and Install Packages
 
