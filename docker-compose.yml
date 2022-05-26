@@ -10,6 +10,7 @@ services:
     environment:
       # set database credentials
       DATABASE_URL_DOCKER: ${DATABASE_URL_DOCKER}
+      APP_SETTING: prod
     restart: always
     depends_on:
       # build those images first
