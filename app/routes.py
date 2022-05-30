@@ -7,7 +7,6 @@ from werkzeug.urls import url_parse
 
 @app.route("/")
 @app.route("/index")
-@login_required
 def index():
     user = {"username": "Fellow Pyrates"}
     posts = [
